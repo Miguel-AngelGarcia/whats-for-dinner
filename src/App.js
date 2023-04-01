@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import React, { useState } from "react";
 import InstructionTable from "./Components/InstructionTable";
+import NewInstructionForm from "./Components/NewInstructionForm";
 
 function App() {
   //given steps in a function
@@ -33,7 +34,7 @@ function App() {
         rowIntsruction: "New instruction",
         rowAction: "New action",
       };
-
+      //adds new step and old steps
       setSteps((steps) => [...steps, newStep]);
     }
   };
@@ -50,6 +51,7 @@ function App() {
           >
             Add new step
           </button>
+          <NewInstructionForm />
         </div>
       </div>
     </div>
