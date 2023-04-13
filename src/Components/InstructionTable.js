@@ -13,9 +13,12 @@ function InstructionTable(props) {
       <tbody>
         {props.steps.map((steps) => (
           <RowItem
+            //need a key for react
+            key={steps.rowNumber}
             rowNumber={steps.rowNumber}
             rowIntsruction={steps.rowIntsruction}
             rowAction={steps.rowAction}
+            deleteStep={props.deleteStep}
           />
         ))}
       </tbody>

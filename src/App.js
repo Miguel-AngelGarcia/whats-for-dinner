@@ -1,61 +1,103 @@
-import logo from "./logo.svg";
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import InstructionTable from "./Components/InstructionTable";
 import NewInstructionForm from "./Components/NewInstructionForm";
+import Navbar from "./Components/Navbar";
+import { ThemeProvider } from "styled-components";
+import { GlobalStyles } from "./Components/global";
+import { theme } from "./Components/theme";
+import { Burger, Footer, Header, Menu } from "./Components";
+import { useOnClickOutside } from "./Hooks/";
+import { Carousel } from "./Components/Carousel/Carousel";
+import { Body } from "./Components/Body/Body";
 
 function App() {
+  const node = useRef();
+  useOnClickOutside(node, () => setOpen(false));
+
+  const [open, setOpen] = useState(false);
+
+  const [showAddStepForm, setShowAddStepForm] = useState(false);
   //given steps in a function
   const [steps, setSteps] = useState([
     {
-      rowNumber: "Step 1",
+      rowNumber: "1",
       rowIntsruction: "Find a recipe you love",
       rowAction: "Save link",
     },
     {
-      rowNumber: "Step 2",
+      rowNumber: "2",
       rowIntsruction: "Open section",
       rowAction: "Paste link",
     },
     {
-      rowNumber: "Step 3",
+      rowNumber: "3",
       rowIntsruction: "Click save",
       rowAction: "Enjoy :)",
     },
   ]);
 
-  const addStep = () => {
-    let stepNumber = steps.length;
-
-    if (stepNumber > 0) {
-      stepNumber++;
-      const newStep = {
-        rowNumber: `Step ${stepNumber}`,
-        rowIntsruction: "New instruction",
-        rowAction: "New action",
-      };
-      //adds new step and old steps
-      setSteps((steps) => [...steps, newStep]);
+  const addStep = (description, instruction) => {
+    let rowNumber = 0;
+    if (steps.length > 0) {
+      let curr = Number(steps[steps.length - 1].rowNumber) + 1;
+      console.log(curr);
+      rowNumber = curr;
+    } else {
+      rowNumber = "1";
     }
+    const newStep = {
+      rowNumber: rowNumber,
+      rowIntsruction: description,
+      rowAction: instruction,
+    };
+    //adds new step and old steps
+    setSteps((steps) => [...steps, newStep]);
+  };
+
+  const deleteStep = (deleteStepRowNumber) => {
+    let filtered = steps.filter(function (value) {
+      //remember.PROPERTY of value.
+      return value.rowNumber !== deleteStepRowNumber;
+    });
+    setSteps(filtered);
+    console.log(filtered);
   };
 
   return (
-    <div className="mt-5 container">
-      <div className="card">
-        <div className="card-header">Table Below </div>
-        <div className="card-body">
-          <InstructionTable steps={steps /*send steps to Table}*/} />
-          <button
-            className="btn btn-primary"
-            onClick={addStep} /*only when clicked, no ()*/
-          >
-            Add new step
-          </button>
-          <NewInstructionForm />
+    <ThemeProvider theme={theme}>
+      <>
+        <div>
+          <Navbar />
         </div>
-      </div>
-    </div>
+        <div>
+          <Body />
+        </div>
+        <div>
+          <Footer />
+        </div>
+      </>
+    </ThemeProvider>
   );
 }
 
-export default App;
+export default App; /*}
+
+/*
+return (
+    <ThemeProvider theme={theme}>
+      <>
+        <GlobalStyles />
+        <div></div>
+        <div ref={node}>
+          <Burger
+            open={open}
+            setOpen={setOpen /*Burger & menu know about state now*/ /*
+            />
+            <Menu open={open} setOpen={setOpen} />
+          </div>
+          <Footer></Footer>
+        </>
+      </ThemeProvider>
+    );
+*/

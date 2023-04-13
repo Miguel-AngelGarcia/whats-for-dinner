@@ -1,34 +1,31 @@
 import React, { useState } from "react";
 //state captures change and rerenders page
 
-function NewInstructionForm() {
+//passing in props
+function NewInstructionForm(props) {
   //starts off empty, then gets letters added-------------p[0]
   const [description, setDescription] = useState("");
-  const [assigned, setAssigned] = useState("");
+  const [action, setAction] = useState("");
 
-  /*
-  const descriptionChange = (event) => {
-    console.log("desc: " + event.target.value);
-    setDescription(event.target.value);
+  const submitNewInstruction = () => {
+    if (description !== "" && action !== "") {
+      props.addStep(description, action);
+      setDescription("");
+      setAction("");
+    }
   };
-
-  const assignChange = (event) => {
-    console.log("assign: " + event.target.value);
-    setAssigned(event.target.value);
-  };
-  */
 
   return (
     <div className="mt-5">
       <form>
         <div className="mb-3">
-          <label className="form-label">Assigned</label>
+          <label className="form-label">Action</label>
           <input
             type="text"
             className="form-control"
             required
-            onChange={(e) => setAssigned(e.target.value)}
-            value={assigned}
+            onChange={(e) => setAction(e.target.value)}
+            value={action}
           ></input>
         </div>
         <div className="mb-3">
@@ -41,7 +38,11 @@ function NewInstructionForm() {
             value={description}
           ></textarea>
         </div>
-        <button type="button" className="btn btn-primary mt-3">
+        <button
+          type="button"
+          className="btn btn-primary mt-3"
+          onClick={submitNewInstruction}
+        >
           Add Instruction
         </button>
       </form>
@@ -50,3 +51,16 @@ function NewInstructionForm() {
 }
 
 export default NewInstructionForm;
+
+//removed these from above
+/*
+  const descriptionChange = (event) => {
+    console.log("desc: " + event.target.value);
+    setDescription(event.target.value);
+  };
+
+  const actionChange = (event) => {
+    console.log("action: " + event.target.value);
+    setAction(event.target.value);
+  };
+  */
