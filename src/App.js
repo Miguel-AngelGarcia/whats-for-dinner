@@ -67,18 +67,20 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <>
-        <div>
-          <Navbar />
-        </div>
-        <div>
-          <Body />
-        </div>
-        <MonthlyMainstay />
-        <div>
-          <Footer />
-        </div>
-      </>
+      <div className="page">
+        <>
+          <div>
+            <Navbar />
+          </div>
+          <div className="main-body-wrapper">
+            <Body />
+          </div>
+          <MonthlyMainstay />
+          <div>
+            <Footer />
+          </div>
+        </>
+      </div>
     </ThemeProvider>
   );
 }

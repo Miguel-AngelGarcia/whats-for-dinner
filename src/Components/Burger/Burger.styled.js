@@ -44,5 +44,19 @@ export const StyledBurger = styled.button`
         open ? "translateX(-20px)" : "translateX(0px)"};
       opacity: ${({ open }) => (open ? "0" : "1")};
     }
+
+    @media screen and (max-width: 1023px) {
+      height: 0.125rem;
+      width: 1rem;
+    }
+  }
+
+  @media screen and (max-width: 1023px) {
+    height: 1rem;
+
+    .div {
+      height: 0.125rem;
+      width: 1rem;
+    }
   }
 `;

@@ -17,5 +17,10 @@ export const StyledNavbar = styled.nav`
       theme.primaryDark ? theme.primaryLight : theme.primaryDark};
 
     font-weight: bold;
+
+    @media screen and (max-width: 1023px) {
+      font-size: 24px;
+      margin-top: 40px;
+    }
   }
 `;

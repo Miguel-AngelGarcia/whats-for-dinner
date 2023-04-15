@@ -2,11 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -24,23 +19,21 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 html,
 body {
   max-width: 100%;
   font-family: "Times";
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-body-wrapper {
+  align-items: stretch;
+  justify-content: center;
+  background-color: #fffff6;
 }
 
 .gallery {
@@ -62,9 +55,12 @@ body {
   object-fit: none;
   object-position: center;
   height: auto;
-  width: 900px;
+  display: inline-block;
+  position: relative;
+  width: fit-content;
   max-width: 100%;
   border-radius: 30px;
+
   filter: drop-shadow(1px 2px 3px);
 }
 
@@ -108,20 +104,20 @@ body {
 
 .wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  background-color: #fffff6;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   padding-top: 9rem;
-  padding-left: 4%;
-  padding-right: 4%;
-  margin-left: 4%;
-  margin-right: 4%;
-  column-gap: 4%;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  margin-right: auto;
+  margin-left: auto;
+  column-gap: 2rem;
+  max-width: 1600px;
 }
 
 .text-in-hero {
-  margin-top: 4.5%;
-  margin-left: 1.5%;
-  margin-right: 1.5%;
+  padding-top: 24px;
+  padding-left: 8px;
+  padding-right: 8px;
   margin-bottom: 48px;
 }
 
@@ -129,7 +125,8 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  grid-gap: 48px;
+  grid-gap: 2rem;
+  margin-bottom: 2rem;
 }
 /**/
 .inner-most-grid {
@@ -138,72 +135,74 @@ body {
 }
 
 .text-in-img {
-  padding-left: 10%;
+  padding-left: 2rem;
 }
 
 .section-stuff {
   margin-top: 4%;
 }
 
-.monthlyMainstayWrapper {
-  display: grid;
-  padding-left: 4%;
-  padding-right: 4%;
-  margin: 4%;
-}
-
 /*media queries go 34, 40, 40*/
 #title {
   text-align: center;
-  font-size: 48px;
+  font-size: 40px;
   font-weight: 900;
-  margin-bottom: 4%;
+}
+
+#below-title {
+  text-align: center;
+  font-weight: 500;
+  font-size: 16px;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
 }
 
 #hero-recipe-title {
   text-align: left;
-  font-size: 48px;
+  font-size: 40px;
   font-weight: 900;
+}
+
+#hero-recipe-p {
+  text-align: left;
+  font-size: 18px;
+  font-weight: 400;
 }
 
 #right-recipe-title {
   text-align: left;
   font-size: 24px;
   font-weight: 900;
-  margin-bottom: vh;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 
 #right-recipe-p {
   text-align: left;
-  font-size: 2.2vh;
+  font-size: 18px;
   font-weight: 400;
 }
 
 #mm-title {
   text-align: left;
-  font-size: 3.2vh;
+  font-size: 24px;
   font-weight: 900;
   margin-bottom: 1vh;
 }
 
 #mm-p {
   text-align: left;
-  font-size: 2.2vh;
-  font-weight: 400;
+  font-size: 16px;
+  font-weight: 500;
 }
 
-/*These are our 2 dimensions of focus besides macbook 16inch*/
-@media screen and (max-width: 1025px) {
-  #title,
-  #hero-recipe-title {
-    font-size: 32px;
-  }
-}
-
-@media screen and (max-width: 775px) {
-  #right-recipe-title {
-    font-size: 20px;
-  }
+.monthlyMainstayWrapper {
+  display: grid;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 4rem;
 }
 
 /*Need to wrap inside a wrapper to preserve margins
@@ -218,12 +217,11 @@ and not have image overlap*/
   scroll-snap-type: x mandatory;
 }
 
-/*for grap on carousel, it goes 16, 24, 32*/
-@media screen and (max-width: 700px) {
-  .monthlyMainstayWrapper .content {
-    grid-gap: 1.5rem;
-  }
+.monthlyMainstayWrapper .item {
+  margin-bottom: 4rem;
 }
+
+/*for grap on carousel, it goes 16, 24, 32*/
 
 .mainstay-image img {
   object-fit: none;
@@ -236,6 +234,54 @@ and not have image overlap*/
   float: left;
 }
 
-.monthlyMainstayWrapper .text {
-  margin-left: 2.5%;
+.text {
+  padding-left: 2%;
+}
+
+/*These are our 2 dimensions of focus besides macbook 16inch*/
+/*0px - 1025*/
+@media screen and (max-width: 1023px) {
+  #title,
+  #hero-recipe-title {
+    font-size: 32px;
+  }
+
+  .wrapper,
+  .monthlyMainstayWrapper {
+    grid-gap: 1.5rem;
+    grid-template-columns: 1fr;
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+
+  .text-in-img {
+    padding-left: 1.5rem;
+  }
+
+  #navbar {
+    height: 76px;
+    padding-top: 10px;
+  }
+}
+/*0px - 775px*/
+@media screen and (max-width: 768px) {
+  #title,
+  #hero-recipe-title {
+    font-size: 28px;
+  }
+  #right-recipe-title {
+    font-size: 20px;
+  }
+
+  .wrapper,
+  .monthlyMainstayWrapper {
+    grid-gap: 1rem;
+    grid-template-columns: 1fr;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .text-in-img {
+    padding-left: 1rem;
+  }
 }

@@ -3,6 +3,7 @@
 import { Carousel } from "../Carousel/Carousel";
 import "../../App.css";
 import { useScrollPosition } from "../../Hooks/";
+import { MonthlyMainstay } from "../MonthlyMainstay/MonthlyMainstay";
 
 export const Body = () => {
   const scrollPosition = useScrollPosition();
