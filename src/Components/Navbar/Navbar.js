@@ -19,7 +19,7 @@ const Navbar = () => {
       <div id="navbar">
         <div className="mt-2">
           <a href="#"></a>
-          <heading>What's For Dinner</heading>
+          <heading>what's for dinner</heading>
         </div>
         <div ref={node}>
           <Burger

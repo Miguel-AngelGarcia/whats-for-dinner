@@ -9,7 +9,7 @@ export const StyledFooter = styled.footer`
   right: 0;
   bottom: 0;
   width: 100%;
-  text-align: left;
+  text-align: center;
   padding: 20px;
 
   background: ${({ theme }) => theme.primaryLight};
@@ -18,7 +18,7 @@ export const StyledFooter = styled.footer`
   }
 
   heading {
-    font-size: 18px;
+    font-size: 3.5vh;
     color: ${({ theme }) =>
       theme.primaryLight ? theme.primaryDark : theme.primaryLight};
     margin-bottom: 0px;

@@ -10,6 +10,7 @@ import { Burger, Footer, Header, Menu } from "./Components";
 import { useOnClickOutside } from "./Hooks/";
 import { Carousel } from "./Components/Carousel/Carousel";
 import { Body } from "./Components/Body/Body";
+import { MonthlyMainstay } from "./Components/MonthlyMainstay/MonthlyMainstay";
 
 function App() {
   const node = useRef();
@@ -73,6 +74,7 @@ function App() {
         <div>
           <Body />
         </div>
+        <MonthlyMainstay />
         <div>
           <Footer />
         </div>
