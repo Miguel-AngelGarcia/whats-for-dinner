@@ -18,7 +18,7 @@ export const StyledNavbar = styled.nav`
 
     font-weight: bold;
 
-    @media screen and (max-width: 1023px) {
+    @media screen and (max-width: 768px) {
       font-size: 24px;
       margin-top: 40px;
     }
