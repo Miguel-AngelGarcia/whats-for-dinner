@@ -5,12 +5,13 @@ export const ReturnRecipe = (props) => {
   const image = props.recipe.img;
 
   return (
-    <div className="inner-most-grid" id="pic">
-      <img src={image} alt="Teto" />
-
+    <div className="inner-most-grid" id="">
+      <div>
+        <img src={image} alt="Teto" />
+      </div>
       <div className="text-in-img">
         <h3 id="right-recipe-title">{props.recipe.title} </h3>
-        <h6 id="top-recipe-p"> {props.recipe.website} </h6>
+        <h6 id="right-recipe-author"> {props.recipe.website} </h6>
         <h6 id="top-recipe-p"> {props.recipe.description} </h6>
       </div>
     </div>

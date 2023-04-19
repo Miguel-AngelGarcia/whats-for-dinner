@@ -13,12 +13,12 @@ export const MonthlyMainstay = () => {
             <div className="mainstay-image">
               <img src={require("../../Orzo.jpeg")} alt="Teto" />
             </div>
-            <span className="text">
+            <div className="text">
               <h3 id="mm-title">Recipe Title for this guy</h3>
               <h6 id="mm-p">
                 Just a generic description. will get more soon I am sure.
               </h6>
-            </span>
+            </div>
           </div>
           <div className="item">
             <div className="mainstay-image">

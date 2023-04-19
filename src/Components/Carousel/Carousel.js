@@ -9,6 +9,7 @@ export const Carousel = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState(null);
+
   /*calling a function, and all code will go inside brackets.*/
   useEffect(() => {
     /*async we need to wait for a promise to come back
@@ -69,9 +70,19 @@ export const Carousel = () => {
   }
 
   return (
-    <div className="gallery gallery--thumb-post">
-      <div className="inner-grid">
-        {recipes.map((recipe) => (
+    <div className="inner-grid">
+      <div className="" id="pic">
+        {recipes.slice(0, 1).map((recipe) => (
+          <ReturnRecipe recipe={recipe} key={recipe.id} />
+        ))}
+      </div>
+      <div className="" id="pic">
+        {recipes.slice(1, 2).map((recipe) => (
+          <ReturnRecipe recipe={recipe} key={recipe.id} />
+        ))}
+      </div>
+      <div className="" id="pic">
+        {recipes.slice(2, 3).map((recipe) => (
           <ReturnRecipe recipe={recipe} key={recipe.id} />
         ))}
       </div>

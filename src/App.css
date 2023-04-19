@@ -33,49 +33,9 @@ body {
 .main-body-wrapper {
   align-items: stretch;
   justify-content: center;
-  background-color: #fffff6;
-}
-
-.gallery {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-.gallery .gallery--hero-post {
-  max-height: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-}
-
-.gallery--hero-post img {
-  object-fit: cover;
-  object-position: center;
-  height: auto;
-  display: inline-block;
-  position: relative;
-  width: fit-content;
-  max-width: 100%;
-  border-radius: 30px;
-
-  filter: drop-shadow(1px 2px 3px);
-}
-
-.gallery--thumb-post img {
-  object-fit: cover;
-  object-position: center;
-  height: auto;
-  width: 450px;
-  max-width: 100%;
-  border-radius: 30px;
-  filter: drop-shadow(1px 2px 3px);
-}
-
-.gallery--thumb-post .landscape img {
-  object-fit: cover;
+  background-color: rgb(250, 249, 240);
+  display: block;
+  padding-bottom: 3.5rem;
 }
 
 .thumb-post-scroll {
@@ -117,6 +77,58 @@ body {
   max-width: 1600px;
 }
 
+.gallery--hero-post {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  position: sticky;
+  align-self: start;
+  top: 0;
+}
+
+.gallery--hero-post img {
+  object-fit: none;
+  object-position: center;
+  height: auto;
+  display: inline-block;
+  position: relative;
+  height: auto;
+  max-width: 100%;
+  border-radius: 30px;
+
+  filter: drop-shadow(1px 2px 3px);
+}
+
+.hero-content img {
+  object-fit: none;
+  object-position: center;
+  height: auto;
+  display: inline-block;
+  position: relative;
+  height: auto;
+  max-width: 100%;
+  border-radius: 30px;
+
+  filter: drop-shadow(1px 2px 3px);
+}
+
+.gallery--hero-post .fixed {
+}
+
+.blank-hero-gallery-space {
+}
+
+.gallery--thumb-post img {
+  object-fit: cover;
+  object-position: center;
+  width: 450px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 30px;
+  filter: drop-shadow(1px 2px 3px);
+  aspect-ratio: 3/4;
+}
+
 .text-in-hero {
   padding-top: 24px;
   padding-left: 8px;
@@ -129,7 +141,6 @@ body {
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   grid-gap: 2rem;
-  margin-bottom: 2rem;
 }
 /**/
 .inner-most-grid {
@@ -139,10 +150,6 @@ body {
 
 .text-in-img {
   padding-left: 2rem;
-}
-
-.section-stuff {
-  margin-top: 4%;
 }
 
 /*media queries go 34, 40, 40*/
@@ -175,15 +182,20 @@ body {
 #right-recipe-title {
   text-align: left;
   font-size: 24px;
-  font-weight: 900;
   margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+#right-recipe-author {
+  text-align: left;
+  font-size: 18px;
   font-weight: 600;
 }
 
 #mm-title {
   text-align: left;
   font-size: 24px;
-  font-weight: 900;
+  font-weight: 600;
   margin-bottom: 1vh;
 }
 
@@ -193,12 +205,17 @@ body {
   font-weight: 500;
 }
 
-.monthlyMainstayWrapper {
-  display: grid;
+.section-stuff {
+  margin-top: 4%;
+  max-width: 1600px;
   padding-left: 4rem;
   padding-right: 4rem;
   margin-right: auto;
   margin-left: auto;
+}
+
+.monthlyMainstayWrapper {
+  display: grid;
   margin-bottom: 4rem;
 }
 
@@ -215,17 +232,22 @@ and not have image overlap*/
 }
 
 .monthlyMainstayWrapper .item {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr calc(1 - 1fr);
+  grid-gap: 24px;
   margin-bottom: 4rem;
 }
 
 /*for grap on carousel, it goes 16, 24, 32*/
 
 .mainstay-image img {
-  object-fit: none;
+  object-fit: cover;
   object-position: center;
   height: auto;
-  width: 300px;
+
   max-width: 100%;
+  aspect-ratio: 3/4;
   border-radius: 30px;
   filter: drop-shadow(1px 2px 3px);
   float: left;
@@ -243,12 +265,24 @@ and not have image overlap*/
     font-size: 32px;
   }
 
+  .gallery--hero-post {
+    display: grid;
+    position: relative;
+    align-self: stretch;
+    top: 0;
+  }
+
   .wrapper,
-  .monthlyMainstayWrapper {
+  .section-stuff {
     grid-gap: 1.5rem;
     grid-template-columns: 1fr;
     padding-left: 48px;
     padding-right: 48px;
+  }
+
+  .monthlyMainstayWrapper {
+    grid-gap: 1.5rem;
+    grid-template-columns: 1fr;
   }
 
   .text-in-img {
@@ -271,11 +305,20 @@ and not have image overlap*/
   }
 
   .wrapper,
-  .monthlyMainstayWrapper {
+  .section-stuff {
     grid-gap: 1rem;
     grid-template-columns: 1fr;
     padding-left: 24px;
     padding-right: 24px;
+  }
+
+  .monthlyMainstayWrapper {
+    grid-gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+
+  .monthlyMainstayWrapper .item {
+    grid-gap: 16px;
   }
 
   .text-in-img {
