@@ -87,13 +87,13 @@ body {
 }
 
 .gallery--hero-post img {
-  object-fit: none;
-  object-position: center;
+  object-fit: cover;
   height: auto;
   display: inline-block;
   position: relative;
   height: auto;
   max-width: 100%;
+  aspect-ratio: 3/4;
   border-radius: 30px;
 
   filter: drop-shadow(1px 2px 3px);
@@ -171,11 +171,12 @@ body {
   text-align: left;
   font-size: 40px;
   font-weight: 900;
+  cursor: pointer;
 }
 
 #top-recipe-p {
   text-align: left;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
 }
 
@@ -184,6 +185,7 @@ body {
   font-size: 24px;
   margin-bottom: 0.5rem;
   font-weight: 600;
+  cursor: pointer;
 }
 
 #right-recipe-author {
@@ -310,6 +312,7 @@ and not have image overlap*/
     grid-template-columns: 1fr;
     padding-left: 24px;
     padding-right: 24px;
+    padding-top: 6.5rem;
   }
 
   .monthlyMainstayWrapper {
@@ -324,4 +327,27 @@ and not have image overlap*/
   .text-in-img {
     padding-left: 1rem;
   }
+}
+
+.hover-underline {
+  text-decoration: none;
+  color: black;
+}
+
+.hover-underline:hover {
+  text-decoration: underline rgba(0, 0, 0, 1);
+  color: black;
+}
+
+.url-blue-elim {
+  color: transparent;
+}
+
+.url-blue-elim img {
+  border: 1px solid white;
+  border-radius: 30px;
+}
+
+.url-blue-elim:hover {
+  color: transparent;
 }

@@ -6,11 +6,14 @@ export const ReturnRecipe = (props) => {
 
   return (
     <div className="inner-most-grid" id="">
-      <div>
+      <a href={props.recipe.url} target="_blank" className="url-blue-elim">
         <img src={image} alt="Teto" />
-      </div>
+      </a>
       <div className="text-in-img">
-        <h3 id="right-recipe-title">{props.recipe.title} </h3>
+        <a href={props.recipe.url} target="_blank" className="hover-underline">
+          <h3 id="right-recipe-title">{props.recipe.title}</h3>
+        </a>
+
         <h6 id="right-recipe-author"> {props.recipe.website} </h6>
         <h6 id="top-recipe-p"> {props.recipe.description} </h6>
       </div>
