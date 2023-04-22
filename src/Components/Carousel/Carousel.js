@@ -20,7 +20,7 @@ export const Carousel = () => {
       const loadedRecipes = [];
 
       for (let index = 0; index < 3; index++) {
-        const urlNum = Math.floor(Math.random() * 9 + 1);
+        const urlNum = Math.floor(Math.random() * 15 + 1);
 
         const baseURL = "http://localhost:8080/api/recipes";
         const url = `${baseURL}/${urlNum}`;

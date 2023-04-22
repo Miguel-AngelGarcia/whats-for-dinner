@@ -10,11 +10,7 @@ export const Body = () => {
     <div className="wrapper">
       <div className="gallery--hero-post">
         <div className="">
-          <img
-            className="hero-image"
-            src={require("../../Orzo.jpeg")}
-            alt="Teto"
-          />
+          <img className="" src={require("../../salmon.jpg")} alt="Teto" />
           <div className="text-in-hero">
             <h1 id="hero-recipe-title">Title of this recipe</h1>
             <h3 id="top-recipe-p">description for this top recipe</h3>

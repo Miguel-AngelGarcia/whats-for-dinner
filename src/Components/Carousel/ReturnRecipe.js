@@ -13,7 +13,6 @@ export const ReturnRecipe = (props) => {
         <a href={props.recipe.url} target="_blank" className="hover-underline">
           <h3 id="right-recipe-title">{props.recipe.title}</h3>
         </a>
-
         <h6 id="right-recipe-author"> {props.recipe.website} </h6>
         <h6 id="top-recipe-p"> {props.recipe.description} </h6>
       </div>
