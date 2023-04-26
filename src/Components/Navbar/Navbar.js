@@ -3,57 +3,45 @@ import { StyledNavbar } from "./Navbar.styled";
 import { useScrollPosition } from "../../Hooks/";
 import { Burger, Footer, Menu } from "..";
 import { useOnClickOutside } from "../../Hooks/";
+import { Dropdown } from "../Dropdown/Dropdown";
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
 // Sticky Menu Area
-const Navbar = () => {
+const Navbar = ({ setCat }) => {
   const node = useRef();
   useOnClickOutside(node, () => setOpen(false));
 
   const [open, setOpen] = useState(false);
   const scrollPosition = useScrollPosition();
+
+  const childToParent = (childdata) => {
+    setCat(childdata);
+    console.log("In navbar", childdata);
+  };
+
   return (
-    <StyledNavbar>
-      <div id="navbar">
-        <div className="mt-2">
-          <a href="#"></a>
-          <heading>what's for dinner</heading>
-        </div>
-        <div ref={node}>
+    <div className="nav-grid" id="navbar">
+      <div className="upper-nav">
+        <div className="top-box-1" ref={node}>
           <Burger
             open={open}
             setOpen={setOpen /*Burger & menu know about state now*/}
           />
           <Menu open={open} setOpen={setOpen} />
         </div>
+        <div className="top-box-2">
+          <a href="#" className="top-box-2-underline">
+            <h1>what's for dinner</h1>
+          </a>
+        </div>
+        <div className="top-box-3-blank"></div>
       </div>
-    </StyledNavbar>
-  );
-};
-
-export default Navbar;
-
-/*
-return (
-  
-    <div>
-      className=
-      {classNames(
-        scrollPosition > 0 ? "shadow" : "shadow-none",
-        "transition-shadow sticky top-0 bg-white z-20"
-      )}
-      >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex justify-between items-center py-6 md:justify-start md:space-x-10">
-          <div className="flex justify-start lg:w-0 lg:flex-1">
-            <a href="#">
-              <span className="sr-only">Workflow</span>
-            </a>
-          </div>
+      <div className="lower-nav">
+        <div className="lower-nav-wrapper">
+          <Dropdown childToParent={childToParent} />
         </div>
       </div>
     </div>
   );
-*/
+};
+
+export default Navbar;

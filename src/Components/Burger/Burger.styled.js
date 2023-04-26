@@ -45,14 +45,16 @@ export const StyledBurger = styled.button`
       opacity: ${({ open }) => (open ? "0" : "1")};
     }
 
-    @media screen and (max-width: 1023px) {
+    @media screen and (max-width: 767px) {
       height: 0.125rem;
-      width: 1rem;
+      width: 1.1rem;
     }
   }
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: 767px) {
     height: 1rem;
+    left: 1rem;
+    top: 19px;
 
     .div {
       height: 0.125rem;

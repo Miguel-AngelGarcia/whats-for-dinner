@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import InstructionTable from "./Components/InstructionTable";
 import NewInstructionForm from "./Components/NewInstructionForm";
 import Navbar from "./Components/Navbar";
@@ -11,6 +11,7 @@ import { useOnClickOutside } from "./Hooks/";
 import { Carousel } from "./Components/Carousel/Carousel";
 import { Body } from "./Components/Body/Body";
 import { MonthlyMainstay } from "./Components/MonthlyMainstay/MonthlyMainstay";
+import { Dropdown } from "./Components/Dropdown/Dropdown";
 
 function App() {
   const node = useRef();
@@ -18,62 +19,28 @@ function App() {
 
   const [open, setOpen] = useState(false);
 
-  const [showAddStepForm, setShowAddStepForm] = useState(false);
-  //given steps in a function
-  const [steps, setSteps] = useState([
-    {
-      rowNumber: "1",
-      rowIntsruction: "Find a recipe you love",
-      rowAction: "Save link",
-    },
-    {
-      rowNumber: "2",
-      rowIntsruction: "Open section",
-      rowAction: "Paste link",
-    },
-    {
-      rowNumber: "3",
-      rowIntsruction: "Click save",
-      rowAction: "Enjoy :)",
-    },
-  ]);
+  const [cat, setCat] = useState("All");
 
-  const addStep = (description, instruction) => {
-    let rowNumber = 0;
-    if (steps.length > 0) {
-      let curr = Number(steps[steps.length - 1].rowNumber) + 1;
-      console.log(curr);
-      rowNumber = curr;
-    } else {
-      rowNumber = "1";
-    }
-    const newStep = {
-      rowNumber: rowNumber,
-      rowIntsruction: description,
-      rowAction: instruction,
-    };
-    //adds new step and old steps
-    setSteps((steps) => [...steps, newStep]);
+  const childToParent = (childdata) => {
+    setCat(childdata);
+    console.log("in App", setCat);
   };
 
-  const deleteStep = (deleteStepRowNumber) => {
-    let filtered = steps.filter(function (value) {
-      //remember.PROPERTY of value.
-      return value.rowNumber !== deleteStepRowNumber;
-    });
-    setSteps(filtered);
-    console.log(filtered);
-  };
+  useEffect(() => {
+    console.log("cat cat cat", cat);
+    console.log("length", cat.length);
+  }, [cat]);
 
   return (
     <ThemeProvider theme={theme}>
       <div className="page">
         <>
           <div>
-            <Navbar />
+            <Navbar setCat={setCat} />
           </div>
+          <div className="spacer">&nbsp;</div>
           <div className="main-body-wrapper">
-            <Body />
+            <Body sentCategory={cat} key={cat.length} />
           </div>
           <MonthlyMainstay />
           <div>
