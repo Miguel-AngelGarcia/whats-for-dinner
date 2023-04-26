@@ -35,10 +35,13 @@ export const Dropdown = ({ childToParent }) => {
 
   const onOptionClicked = (value) => () => {
     //console.log("1st", category);
-    const oldCat = document.getElementById(category);
-    oldCat.classList.toggle("chosen-cat");
-    setCategory(value);
-    childToParent(value);
+    console.log("old", category, " new", value);
+    if (category !== value) {
+      const oldCat = document.getElementById(category);
+      oldCat.classList.toggle("chosen-cat");
+      setCategory(value);
+      childToParent(value);
+    }
 
     //console.log("2nd", category);
   };

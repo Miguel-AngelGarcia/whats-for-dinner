@@ -21,13 +21,7 @@ const Navbar = ({ setCat }) => {
   return (
     <div className="nav-grid" id="navbar">
       <div className="upper-nav">
-        <div className="top-box-1" ref={node}>
-          <Burger
-            open={open}
-            setOpen={setOpen /*Burger & menu know about state now*/}
-          />
-          <Menu open={open} setOpen={setOpen} />
-        </div>
+        <div className="top-box-1"></div>
         <div className="top-box-2">
           <a href="#" className="top-box-2-underline">
             <h1>what's for dinner</h1>
@@ -45,3 +39,30 @@ const Navbar = ({ setCat }) => {
 };
 
 export default Navbar;
+
+/* Will add Burger menu back when we add "Send a recipe"
+return (
+    <div className="nav-grid" id="navbar">
+      <div className="upper-nav">
+        <div className="top-box-1" ref={node}>
+          <Burger
+            open={open}
+            setOpen={setOpen }
+            />
+            <Menu open={open} setOpen={setOpen} />
+          </div>
+          <div className="top-box-2">
+            <a href="#" className="top-box-2-underline">
+              <h1>what's for dinner</h1>
+            </a>
+          </div>
+          <div className="top-box-3-blank"></div>
+        </div>
+        <div className="lower-nav">
+          <div className="lower-nav-wrapper">
+            <Dropdown childToParent={childToParent} />
+          </div>
+        </div>
+      </div>
+    );
+    */
