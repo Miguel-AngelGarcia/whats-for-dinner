@@ -68,7 +68,7 @@ export const MonthlyMainstay = () => {
     <section className="section-stuff">
       <div className="monthlyMainstayWrapper">
         <div>
-          <h2 id="title">MONTHLY MAINSTAYS</h2>
+          <h2 id="title">monthly mainstays</h2>
           <div id="below-title">Some stuff you gotta keep on rotation</div>
         </div>
         <div className="content">
