@@ -7,7 +7,14 @@ import { MonthlyMainstay } from "../MonthlyMainstay/MonthlyMainstay";
 import { useState, useEffect } from "react";
 import { ReturnHeroRecipe } from "./ReturnHeroRecipe";
 
+import { createClient } from "@supabase/supabase-js";
+
 export const Body = (props, key) => {
+  const SUPABASE_URL = "https://isfbfwecvnympjtiqgup.supabase.co";
+  const SUPABASE_ANON_KEY =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlzZmJmd2Vjdm55bXBqdGlxZ3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTExOTM2ODYsImV4cCI6MjAwNjc2OTY4Nn0.RXXfuu2z6vqju80q_kqNo8e-gJMxbpIHA-LLi48G_yM";
+  const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
   let image = props;
   console.log("HI", props, key);
   function shuffle(arr) {
@@ -22,6 +29,7 @@ export const Body = (props, key) => {
   }
 
   function setArrays(recipeIDsArray) {
+    console.log("SETARRA", recipeIDsArray);
     for (const eachRecipe in recipeIDsArray) {
       allRecipeId.push(recipeIDsArray[eachRecipe].id);
 
@@ -58,9 +66,10 @@ export const Body = (props, key) => {
   const [ready, setReady] = useState(false);
 
   /*calling a function, and all code will go inside brackets.*/
+  /*
   useEffect(() => {
-    /*async we need to wait for a promise to come back
-    ALSO make sure you just pop after selecting number once */
+    //async we need to wait for a promise to come back
+    //ALSO make sure you just pop after selecting number once
     const fetchRecipesIDs = async () => {
       const allRecipesUrl = "http://localhost:8080/api/allRecipes";
       const idResponse = await fetch(allRecipesUrl);
@@ -68,7 +77,9 @@ export const Body = (props, key) => {
         throw new Error("something went wrong!");
       }
       const idResponseJSON = await idResponse.json();
+      console.log(idResponseJSON);
       const idResponseData = idResponseJSON._embedded.allRecipes;
+      console.log(idResponseData);
 
       const loadedRecipeIDs = [];
 
@@ -78,6 +89,103 @@ export const Body = (props, key) => {
           category: idResponseData[key].category,
         });
       }
+      setRecipeIDCategories(loadedRecipeIDs);
+      setIsLoading(false);
+      setArrays(loadedRecipeIDs);
+      setRecipeArrayLoaded(true);
+      console.log("running 1st");
+
+      const test = props.sentCategory;
+      setCategory(test);
+      console.log("setting cat", test);
+    };
+    fetchRecipesIDs().catch((error) => {
+      setIsLoading(false);
+      setHttpError(error.message);
+    });
+  }, []);
+
+  */
+  /*
+  useEffect(() => {
+    //async we need to wait for a promise to come back
+    //ALSO make sure you just pop after selecting number once
+    if (recipeArrayLoaded) {
+      console.log("here now in 2nd");
+      console.log("going to use cat", category);
+
+      let categoryToUse = allRecipeId;
+
+      if (category === "Vegetarian") {
+        categoryToUse = allVegetarianId;
+      } else if (category === "Vegan") {
+        categoryToUse = allVeganId;
+      }
+      const fetchRecipes = async () => {
+        console.log("yea, all", categoryToUse);
+        const loadedRecipes = [];
+
+        for (let index = 0; index < 4; index++) {
+          //shuffle(recipeIDCategories);
+          const urlNum = categoryToUse[index];
+
+          const baseURL = "http://localhost:8080/api/recipes";
+          const url = `${baseURL}/${urlNum}`;
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error("something went wrong!");
+          }
+          const responseJSON = await response.json();
+
+          //console.log(responseJSON);
+          const responseData = responseJSON;
+
+          if (responseData) {
+            loadedRecipes.push({
+              id: responseData.id,
+              title: responseData.title,
+              website: responseData.website,
+              url: responseData.url,
+              category: responseData.category,
+              description: responseData.description,
+              img: responseData.img,
+            });
+          }
+        }
+        setRecipes(loadedRecipes);
+        setIsLoading(false);
+        setReady(true);
+      };
+      fetchRecipes().catch((error) => {
+        setIsLoading(false);
+        setHttpError(error.message);
+      });
+    }
+  }, [category]); */
+
+  useEffect(() => {
+    //async we need to wait for a promise to come back
+    //ALSO make sure you just pop after selecting number once
+    const fetchRecipesIDs = async () => {
+      let { data: All_Recipe, error } = await supabase
+        .from("All_Recipe")
+        .select("*");
+
+      console.log(
+        "ALLRECIPES",
+        String(supabase.from("All_Recipe").select("*"))
+      );
+
+      const loadedRecipeIDs = [];
+
+      for (const key in All_Recipe) {
+        console.log(All_Recipe[key].id, "EEP");
+        loadedRecipeIDs.push({
+          id: All_Recipe[key].id,
+          category: All_Recipe[key].category,
+        });
+      }
+
       setRecipeIDCategories(loadedRecipeIDs);
       setIsLoading(false);
       setArrays(loadedRecipeIDs);
@@ -115,26 +223,24 @@ export const Body = (props, key) => {
         for (let index = 0; index < 4; index++) {
           //shuffle(recipeIDCategories);
           const urlNum = categoryToUse[index];
+          console.log("INEX", urlNum);
 
-          const baseURL = "http://localhost:8080/api/recipes";
-          const url = `${baseURL}/${urlNum}`;
-          const response = await fetch(url);
-          if (!response.ok) {
-            throw new Error("something went wrong!");
-          }
-          const responseJSON = await response.json();
-          //console.log(responseJSON);
-          const responseData = responseJSON;
+          let { data: Recipes, error } = await supabase
+            .from("Recipes")
+            .select("*")
+            .eq("id", urlNum);
 
-          if (responseData) {
+          console.log("INRECIPES", Recipes, Recipes[0].title);
+
+          if (Recipes) {
             loadedRecipes.push({
-              id: responseData.id,
-              title: responseData.title,
-              website: responseData.website,
-              url: responseData.url,
-              category: responseData.category,
-              description: responseData.description,
-              img: responseData.img,
+              id: Recipes[0].id,
+              title: Recipes[0].title,
+              website: Recipes[0].website,
+              url: Recipes[0].url,
+              category: Recipes[0].category,
+              description: Recipes[0].description,
+              img: Recipes[0].img,
             });
           }
         }
