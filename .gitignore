@@ -8,8 +8,6 @@
 # testing
 /coverage
 
-# production
-/build
 
 #db
 /src/components/Ignore

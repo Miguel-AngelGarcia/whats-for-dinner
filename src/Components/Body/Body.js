@@ -8,12 +8,14 @@ import { useState, useEffect } from "react";
 import { ReturnHeroRecipe } from "./ReturnHeroRecipe";
 
 import { createClient } from "@supabase/supabase-js";
+import { Ignore } from "../Ignore/Ignore";
 
 export const Body = (props, key) => {
-  const SUPABASE_URL = "https://isfbfwecvnympjtiqgup.supabase.co";
-  const SUPABASE_ANON_KEY =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlzZmJmd2Vjdm55bXBqdGlxZ3VwIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTExOTM2ODYsImV4cCI6MjAwNjc2OTY4Nn0.RXXfuu2z6vqju80q_kqNo8e-gJMxbpIHA-LLi48G_yM";
-  const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  const db_info = Ignore;
+  const supabase = createClient(
+    db_info[0].SUPABASE_URL,
+    db_info[0].SUPABASE_ANON_KEY
+  );
 
   let image = props;
   console.log("HI", props, key);
