@@ -9,9 +9,6 @@
 /coverage
 
 
-#db
-/src/components/Ignore
-
 # misc
 .DS_Store
 .env.local
